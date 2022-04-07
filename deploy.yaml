@@ -1,0 +1,41 @@
+---
+version: "2.0"
+
+services:
+  caddy:
+    image: ichbinstudent/akash-demo-page
+    expose:
+      - port: 80
+        as: 80
+        # accept:
+          # - akashhw.tombeynon.co.uk
+        to:
+          - global: true
+
+profiles:
+  compute:
+    caddy:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+  placement:
+    dcloud:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        caddy:
+          denom: uakt
+          amount: 1
+
+deployment:
+  caddy:
+    dcloud:
+      profile: caddy
+      count: 1
