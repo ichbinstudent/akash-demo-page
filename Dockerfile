@@ -13,4 +13,4 @@ RUN yarn build
 FROM caddy:latest
 
 COPY Caddyfile /etc/caddy/Caddyfile
-COPY --from=build dist /var/www/public_html
+COPY --from=build web/dist /var/www/public_html
