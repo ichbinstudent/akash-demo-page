@@ -6,7 +6,7 @@ WORKDIR /web
 COPY /web/ .
 
 RUN yarn install
-RUN yarn build
+RUN yarn build --mode production
 
 
 #webserver
